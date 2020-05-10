@@ -8,7 +8,7 @@ export const momentToDatePSQL = (datefromcalendar) => {
 }
 
 export const make_utc_readable = (datefromcalendar) => {
-    var day = moment(datefromcalendar).format("dddd DD-MM-YYYY HH:mm")
+    var day = moment(datefromcalendar).format("dddd MMM Do ")
     return (
         day
     )

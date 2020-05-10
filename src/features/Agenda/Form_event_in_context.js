@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { AgendaNetworkContext } from './AgendaNetworkContext'
 import TimePicker from "../../Components/TimePicker"
 import moment from "moment"
-
+import Grid from '@material-ui/core/Grid';
 
 const ButtonSubmit = styled.button`
   /* Adapt the colors based on primary prop */
@@ -38,24 +38,28 @@ export const FormValidationEvent = ({ }) => {
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
 
-                    <div>
-                        <Field name="date_selected_start">
-                            {({ input: { name, value, onChange } }) => {
-                                var date_format = moment(date_selected).format()
-                                return (
-                                    <div>
-                                        <TimePicker date={date_format} ></TimePicker>
-                                    </div>)
-                            }}
-                        </Field>
-                    </div>
-
-                    <div>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <h2>start</h2>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Field name="date_selected_start">
+                                {({ input: { name, value, onChange } }) => {
+                                    var date_format = moment(date_selected).format()
+                                    return (
+                                        <div>
+                                            <TimePicker date={date_format} ></TimePicker>
+                                        </div>)
+                                }}
+                            </Field>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
                         <ButtonSubmit>
                             submit
                     </ButtonSubmit>
+                    </Grid>
 
-                    </div>
                 </form>
             )}
         />
