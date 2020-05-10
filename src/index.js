@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import * as serviceWorker from './serviceWorker';
+import * as Auth from "./react-auth0-spa"
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Auth.Auth0ContextProvider>
+    <App></App>
+  </Auth.Auth0ContextProvider>,
   document.getElementById('root')
 );
 

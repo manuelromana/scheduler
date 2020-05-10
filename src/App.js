@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useContext } from "react"
+import createAuth0Client from '@auth0/auth0-spa-js';
+import { gql } from "apollo-boost";
+import { ApolloProvider } from '@apollo/react-hooks';
+import { Auth0Context } from "./react-auth0-spa"
+import { makeClient } from "./apollo"
+import AgendaNetworking from "./features/AgendaNetworking"
+import { AgendaNetworkContextProvider } from "./features/Agenda/AgendaNetworkContext"
+import { AgendaInContext } from "./features/Agenda/Agenda_in_context"
+import { FormValidationEvent } from "./features/Agenda/Form_event_in_context"
+import Dialog from "./features/Agenda/Dialog_in_context"
+import NavBar from "./Components/NavBar"
+import Draggable from "./Components/Test"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
+import Profile from "./Components/Profile"
+import Layout from "./features/Page/Layout"
+
+export const App = () => {
+  const { tokenState } = useContext(Auth0Context)
+  //console.log(tokenState);
+  //if (!tokenState) return <div>loading...</div>
+  const client = makeClient(tokenState)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    <ApolloProvider client={client}>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/" ></Route>
+
+            <Route exact path="/profile" component={Profile}></Route>
+
+            <Route exact path="/test" >
+              <AgendaNetworkContextProvider>
+                <AgendaInContext></AgendaInContext>
+                <Dialog>
+                  <FormValidationEvent></FormValidationEvent>
+                </Dialog>
+              </AgendaNetworkContextProvider>
+            </Route>
+            <Route exact path="/agenda" component={AgendaNetworking}></Route>
+          </Switch>
+        </Layout>
+      </Router>
+    </ApolloProvider>
+
+
+
+
+
+  )
 }
 
-export default App;
+
+
+
+
+
+
+
+
+
