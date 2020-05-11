@@ -25,7 +25,6 @@ export const FormValidationEvent = ({ }) => {
 
     const { close_dialog,
         pushEvent,
-        open_dialog,
         date_selected,
         setdate_selected, onSubmit } = React.useContext(AgendaNetworkContext)
     console.log("dateform", date_selected);
@@ -70,7 +69,7 @@ export const FormValidationEvent = ({ }) => {
                 </ButtonSubmit>
                 </Grid>
                 <Grid item xs={3}>
-                    <ButtonSubmit>
+                    <ButtonSubmit onClick={close_dialog}>
                         Cancel
                 </ButtonSubmit>
                 </Grid>

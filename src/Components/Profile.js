@@ -16,10 +16,10 @@ const Profile = () => {
                 console.log(user)
                 return (
                     <React.Fragment>
-                        <img src={user.picture} alt="Profile" />
+                        <img src={user && user.picture} alt="Profile" />
 
-                        <h2>{user.name}</h2>
-                        <p>{user.email}</p>
+                        <h2>{user && user.name}</h2>
+                        <p>{user && user.email}</p>
                     </React.Fragment>
                 )
             }

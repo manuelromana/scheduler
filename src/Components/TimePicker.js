@@ -15,17 +15,27 @@ function TimePickerComponent({ startOrEnd, dateFromContext, setDateSelectedInCon
         return <h2>charging date from context</h2>
     }
 
-    console.log("picker", dateFromContext)
+    console.log("picker", dateFromContext, startOrEnd)
 
     //attribuer dynamiquement une propriété
     const { [startOrEnd]: start_or_end } = dateFromContext
+    console.log("storend", startOrEnd);
+
 
     return (
         <div>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <KeyboardDateTimePicker
                     value={start_or_end}
-                    onChange={(date) => setDateSelectedInContext({ [startOrEnd]: date })}
+                    onChange={(date) => setDateSelectedInContext((prevstate) => {
+                        return (
+                            {
+                                ...prevstate,
+                                [startOrEnd]: date
+                            }
+                        )
+
+                    })}
                     variant="inline"
                 />
             </MuiPickersUtilsProvider>

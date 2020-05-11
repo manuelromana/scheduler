@@ -2,6 +2,7 @@ import * as React from "react"
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import * as Query_events from "../Events/query_events"
 import * as Mutation_events from "../Events/mutations_events"
+import { momentToDatePSQL } from "../../utils"
 import Agenda from "../../Components/Agenda"
 import { make_utc_readable } from "../../utils"
 
@@ -23,12 +24,28 @@ export const AgendaNetworkContextProvider = ({ children }) => {
     const [pushEvent] = useMutation(Mutation_events.EVENT_PUSH,
         {
             onError(error) {
-                console.log(error)
+                console.log("gql error", error)
             }
         }
     );
 
-    const onSubmit = () => console.log("toto")
+    const onSubmit = () => {
+        console.log("onsubmit", date_selected.start);
+        pushEvent({
+            variables: {
+                objects: {
+                    end: `${momentToDatePSQL(date_selected.end)}`,
+                    start: `${momentToDatePSQL(date_selected.start)}`,
+                    title: "testfromagenda22",
+                    user_id: "auth0|5ea71b86506d9a0c6fb2dcc8"
+
+                }
+            },
+
+        })
+        close_dialog()
+
+    }
 
     console.log(data_query, loading_query, error_query);
     console.log("datefromcontext", date_selected);
@@ -46,8 +63,8 @@ export const AgendaNetworkContextProvider = ({ children }) => {
                 setSlot,
                 date_selected,
                 setdate_selected,
-
-                onSubmit
+                onSubmit,
+                data_query
             }}
         >
             {children}
