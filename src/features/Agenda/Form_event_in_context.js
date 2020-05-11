@@ -40,7 +40,10 @@ export const FormValidationEvent = ({ }) => {
                 </Grid>
                 <Grid item xs={6}>
                     <TimePicker
-                        date={date_selected && date_selected.start}
+                        startOrEnd="start"
+                        dateFromContext={date_selected}
+                        setDateSelectedInContext={setdate_selected}
+
                     >
 
                     </TimePicker>
@@ -52,12 +55,13 @@ export const FormValidationEvent = ({ }) => {
                 </Grid>
                 <Grid item xs={6}>
                     <TimePicker
-                        date={date_selected && date_selected.end}
+                        startOrEnd="end"
+                        dateFromContext={date_selected}
+                        setDateSelectedInContext={setdate_selected}
                     >
-
                     </TimePicker>
-
                 </Grid>
+
             </Grid>
             <Grid container spacing={1} alignItems="center" justify="flex-end">
                 <Grid item xs={3}>

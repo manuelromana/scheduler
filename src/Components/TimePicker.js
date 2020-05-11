@@ -5,21 +5,27 @@ import {
     MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import { make_utc_readable } from "../utils"
+import { AgendaNetworkContext } from "../features/Agenda/AgendaNetworkContext"
 
+function TimePickerComponent({ startOrEnd, dateFromContext, setDateSelectedInContext }) {
+    //const { date_selected,
+    //   setdate_selected } = React.useContext(AgendaNetworkContext)
 
-function TimePickerComponent({ date }) {
-    //const date_date = new Date(date)
-    const [selectedDate, setDate] = React.useState(date && date.start);
-    console.log("piecker", selectedDate);
-    console.log("dddddd", date)
-    React.useEffect(() => setDate(date))
+    if (!dateFromContext) {
+        return <h2>charging date from context</h2>
+    }
+
+    console.log("picker", dateFromContext)
+
+    //attribuer dynamiquement une propriété
+    const { [startOrEnd]: start_or_end } = dateFromContext
 
     return (
         <div>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <KeyboardDateTimePicker
-                    value={selectedDate}
-                    onChange={setDate}
+                    value={start_or_end}
+                    onChange={(date) => setDateSelectedInContext({ [startOrEnd]: date })}
                     variant="inline"
                 />
             </MuiPickersUtilsProvider>
@@ -27,6 +33,7 @@ function TimePickerComponent({ date }) {
         </div>
     )
 }
+
 
 export default TimePickerComponent;
 
