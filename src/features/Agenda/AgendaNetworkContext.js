@@ -11,11 +11,13 @@ export const AgendaNetworkContextProvider = ({ children }) => {
 
     const [open, setopen_dialog] = React.useState(false)
     const [date_selected, setdate_selected] = React.useState()
+
     const { data: data_query, loading: loading_query, error: error_query } = useQuery(Query_events.GET_ALL_EVENTS,
         { fetchPolicy: 'network-only' }
     )
 
     const close_dialog = () => setopen_dialog(false)
+
     const [pushEvent] = useMutation(Mutation_events.EVENT_PUSH,
         {
             onError(error) {
@@ -23,6 +25,8 @@ export const AgendaNetworkContextProvider = ({ children }) => {
             }
         }
     );
+
+    const onSubmit = () => console.log("toto")
 
     console.log(data_query, loading_query, error_query);
     console.log("datefromcontext", date_selected);
@@ -35,9 +39,11 @@ export const AgendaNetworkContextProvider = ({ children }) => {
                 open_dialog: () => {
                     setopen_dialog(true)
                 },
-                close_dialog: () => close_dialog(),
+                close_dialog,
                 date_selected,
-                setdate_selected
+                setdate_selected,
+
+                onSubmit
             }}
         >
             {children}

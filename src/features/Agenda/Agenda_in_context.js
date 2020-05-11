@@ -13,7 +13,7 @@ export const AgendaInContext = () => {
                 onSelectEvent={() => console.log("event")}
                 onSelectSlot={(slot) => {
                     open_dialog()
-                    setdate_selected(slot.start)
+                    setdate_selected(slot)
                 }}
             >
 

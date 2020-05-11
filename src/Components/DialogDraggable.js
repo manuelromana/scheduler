@@ -13,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 
-
 function PaperComponent(props) {
     return (
         <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
@@ -34,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DraggableComponent({ open, handleClose, children, date_selected }) {
+export default function DraggableComponent({ open, handleClose, children, date_selected, onSubmit }) {
+
+
     const classes = useStyles()
     return (
 
@@ -49,7 +50,7 @@ export default function DraggableComponent({ open, handleClose, children, date_s
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                        {date_selected && `add event for ${date_selected}`}
+                        {date_selected && `Add event for ${date_selected}`}
                     </DialogTitle>
                 </Grid>
                 <Grid item xs={12}>
@@ -57,16 +58,7 @@ export default function DraggableComponent({ open, handleClose, children, date_s
                         {children}
                     </DialogContent>
                 </Grid>
-                <Grid item xs={12}>
-                    <DialogActions>
-                        <Button autoFocus onClick={handleClose} color="primary">
-                            Cancel
-                        </Button>
-                        <Button onClick={handleClose} color="primary">
-                            Subscribe
-                        </Button>
-                    </DialogActions>
-                </Grid>
+
 
 
 

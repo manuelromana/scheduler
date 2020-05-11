@@ -5,7 +5,7 @@ import { EVENT_PUSH } from "./Events/mutations_events"
 import * as Query_events from "./Events/query_events"
 import { momentToDatePSQL, make_utc_readable } from "../utils"
 import history from "../history"
-import DraggableDialog from "../Components/DraggableComponent"
+import DraggableDialog from "../Components/DialogDraggable"
 import { FormValidationEvent } from "./Events/Form_event"
 
 export default function AgendaNetworking() {

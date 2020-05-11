@@ -9,7 +9,7 @@ import { make_utc_readable } from "../utils"
 
 function TimePickerComponent({ date }) {
     //const date_date = new Date(date)
-    const [selectedDate, setDate] = React.useState(date);
+    const [selectedDate, setDate] = React.useState(date && date.start);
     console.log("piecker", selectedDate);
     console.log("dddddd", date)
     React.useEffect(() => setDate(date))
