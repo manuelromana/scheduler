@@ -15,7 +15,7 @@ export const AgendaNetworkContextProvider = ({ children }) => {
 
     const [date_selected, setdate_selected] = React.useState()
 
-    const { data: data_query, loading: loading_query, error: error_query } = useQuery(Query_events.GET_ALL_EVENTS,
+    const { data: data_query, loading: loading_query, error: error_query, refetch } = useQuery(Query_events.GET_ALL_EVENTS,
         { fetchPolicy: 'network-only' }
     )
 
@@ -24,10 +24,30 @@ export const AgendaNetworkContextProvider = ({ children }) => {
     const [pushEvent] = useMutation(Mutation_events.EVENT_PUSH,
         {
             onError(error) {
-                console.log("gql error", error)
+                console.log("gql error push event", error)
             }
         }
     );
+
+    const [delEvent] = useMutation(Mutation_events.DEL_EVENT,
+        {
+            onError(error) {
+                console.log("gql error del event", error)
+            }
+        }
+    );
+    const del_event_onclick_event = (id) => {
+        delEvent({
+            variables: {
+                id: id
+            },
+            refetchQueries: [{
+                query: Query_events.GET_ALL_EVENTS
+            }]
+
+        })
+
+    }
 
     const onSubmit = () => {
         console.log("onsubmit", date_selected.start);
@@ -41,6 +61,9 @@ export const AgendaNetworkContextProvider = ({ children }) => {
 
                 }
             },
+            refetchQueries: [{
+                query: Query_events.GET_ALL_EVENTS
+            }]
 
         })
         close_dialog()
@@ -64,7 +87,8 @@ export const AgendaNetworkContextProvider = ({ children }) => {
                 date_selected,
                 setdate_selected,
                 onSubmit,
-                data_query
+                data_query,
+                del_event_onclick_event
             }}
         >
             {children}
