@@ -38,7 +38,7 @@ export const App = () => {
 
             <Route exact path="/profile" component={Profile}></Route>
 
-            <Route exact path="/test" >
+            <Route exact path="/agenda" >
               <AgendaNetworkContextProvider>
                 <AgendaInContext></AgendaInContext>
                 <Dialog>
@@ -46,7 +46,6 @@ export const App = () => {
                 </Dialog>
               </AgendaNetworkContextProvider>
             </Route>
-            <Route exact path="/agenda" component={AgendaNetworking}></Route>
           </Switch>
         </Layout>
       </Router>

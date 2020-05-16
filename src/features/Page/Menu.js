@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const list_items = [{ text: "Profile", link: "/profile", icon: <ProfileIcon></ProfileIcon> }, { text: "test", link: "/test", icon: <RequestIcon></RequestIcon> }, { text: "Agenda", link: "/agenda", icon: <AgendaIcon></AgendaIcon> }]
+const list_items = [{ text: "Profile", link: "/profile", icon: <ProfileIcon></ProfileIcon> }, { text: "Agenda", link: "/agenda", icon: <AgendaIcon></AgendaIcon> }]
 
 const ListMenu = () => {
 
