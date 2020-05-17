@@ -11,14 +11,16 @@ const Profile = () => {
         <Auth0Context.Consumer>
             {({ isAuthenticated, user }) => {
                 if (!isAuthenticated) {
+                    console.log("profile");
+
                     return <div>Loading...</div>;
                 }
-                console.log(user)
+                console.log("user", user)
                 return (
                     <React.Fragment>
                         <img src={user && user.picture} alt="Profile" />
 
-                        <h2>{user && user.name}</h2>
+                        <h2>{user && user.nickname}</h2>
                         <p>{user && user.email}</p>
                     </React.Fragment>
                 )

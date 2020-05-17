@@ -12,6 +12,11 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import LogOut from '@material-ui/icons/ExitToApp';
+import Home from '@material-ui/icons/Home';
+import {
+
+    Redirect
+} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +42,9 @@ const NavBar = ({ loadMenu }) => {
                                 </IconButton> */}
                                 {isAuthenticated &&
                                     <React.Fragment>
-
+                                        <Link to="/">
+                                            <Home style={{ color: "white", margin: "10px" }}></Home>
+                                        </Link>
                                         <Button
                                             variant="contained"
                                             color="secondary"

@@ -4,23 +4,7 @@ import moment from 'moment'
 
 const localizer = momentLocalizer(moment)
 
-// let myEventsList = [
-//     //     {
-//     //     id: 0,
-//     //     title: 'All Day Event very long title',
-//     //     allDay: true,
-//     //     start: new Date(2020, 3, 1),
-//     //     end: new Date(2020, 3, 1),
-//     // },
-//     {
-//         id: 1,
-//         title: 'Long Event',
-//         start: new Date(),
-//         end: new Date(),
-//         allDay: false
-//     },]
-
-const MyCalendar = ({ myEventsList, onSelectEvent, onSelectSlot }) => (
+const Agenda = ({ myEventsList, onSelectEvent, onSelectSlot, isSelectable }) => (
     <div>
         <Calendar
             localizer={localizer}
@@ -28,11 +12,11 @@ const MyCalendar = ({ myEventsList, onSelectEvent, onSelectSlot }) => (
             startAccessor="start"
             endAccessor="end"
             style={{ height: 500 }}
-            selectable={true}
+            selectable={isSelectable}
             onSelectEvent={onSelectEvent}
             //onSelecting={selection => console.log("selection", selection)}
             onSelectSlot={onSelectSlot}
         />
     </div>
 )
-export default MyCalendar
+export default Agenda
