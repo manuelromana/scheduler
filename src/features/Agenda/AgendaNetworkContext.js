@@ -3,8 +3,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import * as Query_events from "../Events/query_events"
 import * as Mutation_events from "../Events/mutations_events"
 import { momentToDatePSQL } from "../../utils"
-import Agenda from "../../Components/Agenda"
-import { make_utc_readable } from "../../utils"
+
 
 export const AgendaNetworkContext = React.createContext()
 
@@ -15,7 +14,7 @@ export const AgendaNetworkContextProvider = ({ children }) => {
 
     const [date_selected, setdate_selected] = React.useState()
 
-    const { data: data_query, loading: loading_query, error: error_query, refetch } = useQuery(Query_events.GET_ALL_EVENTS,
+    const { data: data_query, loading: loading_query, error: error_query } = useQuery(Query_events.GET_ALL_EVENTS,
         { fetchPolicy: 'network-only' }
     )
 

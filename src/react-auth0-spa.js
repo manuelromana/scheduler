@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react"
-import createAuth0Client, { Auth0Client } from '@auth0/auth0-spa-js';
-import { useLocation } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import createAuth0Client from '@auth0/auth0-spa-js';
 import history from "./history"
 
 
@@ -30,7 +29,7 @@ export const Auth0ContextProvider = ({ children }) => {
 
         if (window.location.search.includes("code=") &&
           window.location.search.includes("state=")) {
-          const handleRedirect = await auth0clientResult.handleRedirectCallback();
+          await auth0clientResult.handleRedirectCallback();
 
           history.push("/")
         }

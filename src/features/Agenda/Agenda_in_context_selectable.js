@@ -1,7 +1,6 @@
 import * as React from "react"
 import Agenda from "../../Components/Agenda"
 import { AgendaNetworkContext } from "./AgendaNetworkContext"
-import { make_utc_readable } from "../../utils"
 
 export const AgendaInContext = () => {
     const { open_dialog, setdate_selected, data_query, del_event_onclick_event } = React.useContext(AgendaNetworkContext)

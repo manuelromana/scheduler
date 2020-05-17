@@ -15,7 +15,6 @@ const ContainerPage = styled.div`
 
 export default function Layout({ children, authenticated }) {
   const [openMenu, setOpenMenu] = useState(true)
-  console.log("auth", authenticated);
 
   return (
     <Container>

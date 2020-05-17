@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Auth0Context } from "../react-auth0-spa"
-import { Link } from "react-router-dom";
 
 const Profile = () => {
 

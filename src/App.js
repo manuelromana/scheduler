@@ -15,9 +15,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+
 } from "react-router-dom";
-import Home from "./features/Page/Home"
 import Profile from "./Components/Profile"
 import Layout from "./features/Page/Layout"
 

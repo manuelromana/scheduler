@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Form, Field } from 'react-final-form'
-import TextField from '@material-ui/core/TextField';
+
 import styled from "styled-components"
 import { AgendaNetworkContext } from './AgendaNetworkContext'
 import TimePicker from "../../Components/TimePicker"
-import moment from "moment"
+
 import Grid from '@material-ui/core/Grid';
 
 const ButtonSubmit = styled.button`
@@ -21,10 +20,9 @@ const ButtonSubmit = styled.button`
 
 
 
-export const FormValidationEvent = ({ }) => {
+export const FormValidationEvent = () => {
 
     const { close_dialog,
-        pushEvent,
         date_selected,
         setdate_selected, onSubmit } = React.useContext(AgendaNetworkContext)
     console.log("dateform", date_selected);

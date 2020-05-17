@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
-    BrowserRouter as Router,
-    Switch,
+
     Route,
-    Link,
     Redirect
 } from "react-router-dom";
-import history from "../history"
 
 export default function PrivateRoute({ authenticated, component, children, path }) {
 

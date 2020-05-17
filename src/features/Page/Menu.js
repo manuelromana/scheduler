@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ProfileIcon from '@material-ui/icons/AccountCircle'
-import RequestIcon from '@material-ui/icons/Http'
 import AgendaIcon from '@material-ui/icons/Today'
 import { Link } from "react-router-dom"
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -32,9 +27,7 @@ const useStyles = makeStyles((theme) => ({
     drawerContainer: {
         overflow: 'auto',
     }
-    // nested: {
-    //     paddingLeft: theme.spacing(4),
-    // }
+
 
 }));
 
@@ -59,6 +52,7 @@ const ListMenu = () => {
 
 
 function Menu({ open, handleClose }) {
+    //manage case for cell phones!!!!
     const [state, setState] = useState(open)
     const classes = useStyles();
     return (
