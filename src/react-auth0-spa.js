@@ -19,7 +19,7 @@ export const Auth0ContextProvider = ({ children }) => {
         const auth0clientResult = await createAuth0Client({
           domain: 'dev-vdvdansc.eu.auth0.com',
           client_id: 'Mv9Rf5lrJKhpas6d4st9DtPahyOMXh8Z',
-          redirect_uri: 'http://localhost:3001'
+          redirect_uri: 'https://scheduler-7tmqfmmvv.now.sh/'
         });
         //const tok = await auth0clientResult.getTokenSilently()
         //console.log("tok", tok);
