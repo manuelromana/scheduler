@@ -8,7 +8,6 @@ import {
 export default function PrivateRoute({ authenticated, component, children, path }) {
 
     if (!authenticated) {
-        console.log(authenticated);
 
         return <Redirect to="/"></Redirect>
 

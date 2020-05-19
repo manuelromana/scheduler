@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from "styled-components"
 import { AgendaNetworkContext } from './AgendaNetworkContext'
 import TimePicker from "../../Components/TimePicker"
+import TextField from '@material-ui/core/TextField';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -24,15 +25,24 @@ export const FormValidationEvent = () => {
 
     const { close_dialog,
         date_selected,
-        setdate_selected, onSubmit } = React.useContext(AgendaNetworkContext)
-    console.log("dateform", date_selected);
+        setdate_selected, onSubmit, name_event, setName } = React.useContext(AgendaNetworkContext)
 
 
     return (
 
         <React.Fragment>
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={3}>
+                <Grid item xs={4}>
+                    <h2>name of event</h2>
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField value={name_event} onChange={(event) => setName(event.target.value)}></TextField>
+
+
+                </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center">
+                <Grid item xs={4}>
                     <h2>start</h2>
                 </Grid>
                 <Grid item xs={6}>
@@ -47,7 +57,7 @@ export const FormValidationEvent = () => {
                 </Grid>
             </Grid>
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <h2>end</h2>
                 </Grid>
                 <Grid item xs={6}>

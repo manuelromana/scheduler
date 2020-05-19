@@ -3,17 +3,19 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import * as Query_events from "../Events/query_events"
 import * as Mutation_events from "../Events/mutations_events"
 import { momentToDatePSQL } from "../../utils"
-
+import { Auth0Context } from "../../react-auth0-spa"
 
 export const AgendaNetworkContext = React.createContext()
 
 export const AgendaNetworkContextProvider = ({ children }) => {
-
+    const { user } = React.useContext(Auth0Context)
     const [open, setopen_dialog] = React.useState(false)
     const [slot_selected, setSlot] = React.useState()
-
     const [date_selected, setdate_selected] = React.useState()
-
+    const [name_event, setName] = React.useState("")
+    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [event, setEvent] = React.useState(null)
+    const anchorElClose = () => setAnchorEl(null)
     const { data: data_query, loading: loading_query, error: error_query } = useQuery(Query_events.GET_ALL_EVENTS,
         { fetchPolicy: 'network-only' }
     )
@@ -55,8 +57,8 @@ export const AgendaNetworkContextProvider = ({ children }) => {
                 objects: {
                     end: `${momentToDatePSQL(date_selected.end)}`,
                     start: `${momentToDatePSQL(date_selected.start)}`,
-                    title: "testfromagenda22",
-                    user_id: "auth0|5ea71b86506d9a0c6fb2dcc8"
+                    title: name_event,
+                    user_id: user && user.sub
 
                 }
             },
@@ -69,8 +71,7 @@ export const AgendaNetworkContextProvider = ({ children }) => {
 
     }
 
-    console.log(data_query, loading_query, error_query);
-    console.log("datefromcontext", date_selected);
+    console.log("eventname", name_event, user && user.sub);
 
     return (
         <AgendaNetworkContext.Provider
@@ -87,7 +88,14 @@ export const AgendaNetworkContextProvider = ({ children }) => {
                 setdate_selected,
                 onSubmit,
                 data_query,
-                del_event_onclick_event
+                del_event_onclick_event,
+                name_event,
+                setName,
+                anchorEl,
+                setAnchorEl,
+                anchorElClose,
+                event,
+                setEvent
             }}
         >
             {children}

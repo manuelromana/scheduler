@@ -1,11 +1,12 @@
 import * as React from "react"
 import Agenda from "../../Components/Agenda"
 import { AgendaNetworkContext } from "./AgendaNetworkContext"
+import MenuPop from "../../Components/MenuPop"
 
 export const AgendaInContext = () => {
-    const { open_dialog, setdate_selected, data_query, del_event_onclick_event } = React.useContext(AgendaNetworkContext)
-    console.log("data", data_query);
+    const { open_dialog, setdate_selected, data_query, del_event_onclick_event, anchorEl, setAnchorEl, anchorElClose, event, setEvent } = React.useContext(AgendaNetworkContext)
     if (!data_query) return <h2>loading...</h2>
+
     const { calendar_events } = data_query
     const arrayForAgenda = calendar_events.map((event) => {
         event = {
@@ -18,9 +19,9 @@ export const AgendaInContext = () => {
             event
         )
     })
-    console.log("newarray", arrayForAgenda);
 
     function action_on_click_event(event) {
+
         if (window.confirm(`are you sure to delete event ${event && event.title}`)) {
 
             del_event_onclick_event(event && event.id)
@@ -36,7 +37,10 @@ export const AgendaInContext = () => {
                 isSelectable={true}
                 myEventsList={arrayForAgenda}
                 onSelectEvent={
-                    (event) => action_on_click_event(event)
+                    (event, e) => {
+                        setAnchorEl(e.currentTarget)
+                        setEvent(event)
+                    }
                 }
                 onSelectSlot={(slot) => {
                     open_dialog()
@@ -45,6 +49,18 @@ export const AgendaInContext = () => {
             >
 
             </Agenda>
+            <MenuPop anchorEl={anchorEl} anchorElClose={anchorElClose}
+                delEvent={() => {
+                    action_on_click_event(event)
+                    anchorElClose()
+                }}
+                detailsEvent={() => {
+                    console.log(event)
+                    anchorElClose()
+                }}
+            >
+
+            </MenuPop>
         </React.Fragment>
     )
 }

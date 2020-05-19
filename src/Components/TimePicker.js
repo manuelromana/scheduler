@@ -14,11 +14,9 @@ function TimePickerComponent({ startOrEnd, dateFromContext, setDateSelectedInCon
         return <h2>charging date from context</h2>
     }
 
-    console.log("picker", dateFromContext, startOrEnd)
 
     //attribuer dynamiquement une propriété
     const { [startOrEnd]: start_or_end } = dateFromContext
-    console.log("storend", startOrEnd);
 
 
     return (
