@@ -14,13 +14,13 @@ const ContainerPage = styled.div`
 `;
 
 export default function Layout({ children, authenticated }) {
-  const [openMenu, setOpenMenu] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
 
   return (
     <Container>
       <CssBaseline />
 
-      <NavBar></NavBar>
+      <NavBar handleMenu={() => setOpenMenu(!openMenu)}></NavBar>
       {authenticated && <Menu open={openMenu} handleClose={() => setOpenMenu(false)}></Menu>}
       <ContainerPage>
 

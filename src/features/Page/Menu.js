@@ -52,8 +52,6 @@ const ListMenu = () => {
 
 
 function Menu({ open, handleClose }) {
-    //manage case for cell phones!!!!
-    const [state, setState] = useState(open)
     const classes = useStyles();
     return (
         <div>
@@ -69,9 +67,18 @@ function Menu({ open, handleClose }) {
                     <ListMenu ></ListMenu>
                 </Drawer>
             </Hidden>
-            {/* <Drawer open={open} onClose={handleClose}>
-                {list()}
-            </Drawer> */}
+            <Drawer
+                open={open}
+                onClose={handleClose}
+                className={classes.drawer}
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+
+
+            >
+                <ListMenu></ListMenu>
+            </Drawer>
         </div>
     )
 }

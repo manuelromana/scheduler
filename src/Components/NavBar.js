@@ -11,6 +11,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import LogOut from '@material-ui/icons/ExitToApp';
 import Home from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
+
+import Hidden from '@material-ui/core/Hidden';
+
 
 
 
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const NavBar = ({ loadMenu }) => {
+const NavBar = ({ handleMenu }) => {
 
     const classes = useStyles();
     return (
@@ -40,6 +44,15 @@ const NavBar = ({ loadMenu }) => {
                                         <Link to="/">
                                             <Home style={{ color: "white", margin: "10px" }}></Home>
                                         </Link>
+                                        <Hidden mdUp>
+                                            <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMenu}>
+                                                <MenuIcon style={{ color: "white", margin: "10px" }} >
+
+                                                </MenuIcon>
+                                            </IconButton>
+
+
+                                        </Hidden>
                                         <Button
                                             variant="contained"
                                             color="secondary"
